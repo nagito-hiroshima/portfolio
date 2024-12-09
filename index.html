@@ -19,8 +19,9 @@
     <link href="css/custam.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="img/favicon.ico" />
     <link rel=”canonical” href=”URLが入る” />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+        <meta name="robots" content="noindex" />
 </head>
 
 <body>
@@ -63,6 +64,198 @@
             <!-- /main-visual -->
 
 
+            <!-- about -->
+            <section class="about section" id="about">
+                <div class="inner">
+                    <h2 class="title">ABOUT</h2>
+                    <div class="profile">
+                        <p class="profile-img">
+                            <img src="img/profile.jpg" alt="">
+                        </p>
+                        <div class="profile-body">
+                            <p>
+                                テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。
+                            </p>
+                            <p>
+                                テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!--経歴-->
+                    <div class="tables">
+                    <h1 class="profile-history">経歴</h1>
+                    <table class="profile-history-table">
+                    </table>
+
+                    <!-- certification-->
+                    <h1 class="certification">資格・認定</h1>
+                    <table class="certification-table">
+                        <tr>
+                            <th>取得日</th>
+                            <th>資格・認定名</th>
+                    </table>
+                </div>
+                    <script>
+                        // ファイルの読み込み
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'my.json');
+xhr.send();
+
+// profile-history-table に学歴と職歴を表示
+xhr.onload = function () {
+    if (xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        var education = data.education;
+        var work_experience = data.work_experience;
+        var certifications = data.certifications_and_licenses;
+
+        var historyTable = document.querySelector('.profile-history-table');
+        var certificationTable = document.querySelector('.certification-table');
+
+        // 日付フォーマット関数
+        function formatDate(dateString) {
+            if (!dateString) return "現在";
+            var [year, month] = dateString.split('-');
+            return `${year}/${month}`;
+        }
+
+        // 学歴の表示（開閉式）
+        var educationHtml = '';
+        for (var i = 0; i < education.length; i++) {
+            let activitiesHtml = '';
+            if (education[i].activities && education[i].activities.length > 0) {
+                for (var j = 0; j < education[i].activities.length; j++) {
+                    activitiesHtml += `
+                        <li>
+                            <strong>${education[i].activities[j].title}</strong>: ${education[i].activities[j].description}
+                            ${
+                                education[i].activities[j].release_link
+                                    ? `<a href="${education[i].activities[j].release_link}" target="_blank" rel="noopener noreferrer">[関連リンク]</a>`
+                                    : ""
+                            }
+                        </li>`;
+                }
+            }
+
+            educationHtml += `
+                <tr>
+                    <th>${formatDate(education[i].start_date)} ~ ${formatDate(education[i].end_date)}</th>
+                    <td>
+                        <div class="education-entry">
+                            <span class="education-title">
+                                ${education[i].institution}
+                                ${
+                                    activitiesHtml
+                                        ? `<span class="toggle-icon">▼</span>`
+                                        : ""
+                                }
+                            </span>
+                            ${activitiesHtml ? `<ul class="activities hidden">${activitiesHtml}</ul>` : ""}
+                        </div>
+                    </td>
+                </tr>`;
+        }
+
+        //一行空ける
+        educationHtml += `<tr><th></th><td></td></tr>`;
+        // 職務経歴の表示（開閉式）
+        var workHtml = '';
+        for (var i = 0; i < work_experience.length; i++) {
+            let responsibilitiesHtml = '';
+            if (work_experience[i].responsibilities && work_experience[i].responsibilities.length > 0) {
+                for (var j = 0; j < work_experience[i].responsibilities.length; j++) {
+                    responsibilitiesHtml += `<li>${work_experience[i].responsibilities[j]}</li>`;
+                }
+            }
+
+            let relatedLinksHtml = '';
+            if (work_experience[i].related_links && work_experience[i].related_links.length > 0) {
+                for (var k = 0; k < work_experience[i].related_links.length; k++) {
+                    relatedLinksHtml += `
+                        <li>
+                            <a href="${work_experience[i].related_links[k].url}" target="_blank" rel="noopener noreferrer">
+                                ${work_experience[i].related_links[k].title}
+                            </a>
+                        </li>`;
+                }
+            }
+
+            workHtml += `
+                <tr>
+                    <th>${formatDate(work_experience[i].start_date)} ~ ${formatDate(work_experience[i].end_date)}</th>
+                    <td>
+                        <div class="work-entry">
+                            <span class="work-title">
+                                ${work_experience[i].company_name} (${work_experience[i].position})
+                                ${
+                                    responsibilitiesHtml || relatedLinksHtml
+                                        ? `<span class="toggle-icon">▼</span>`
+                                        : ""
+                                }
+                            </span>
+                            ${
+                                responsibilitiesHtml || relatedLinksHtml
+                                    ? `
+                                        <div class="details hidden">
+                                            ${responsibilitiesHtml ? `<ul class="responsibilities">${responsibilitiesHtml}</ul>` : ""}
+                                            ${relatedLinksHtml ? `<ul class="related-links">${relatedLinksHtml}</ul>` : ""}
+                                        </div>
+                                      `
+                                    : ""
+                            }
+                        </div>
+                    </td>
+                </tr>`;
+        }
+
+        // 資格・認定の表示
+        var certificationHtml = '';
+        for (var i = 0; i < certifications.length; i++) {
+            certificationHtml += `
+                <tr>
+                    <th>${formatDate(certifications[i].date_issued)}</th>
+                    <td>${certifications[i].name}</td>
+                </tr>`;
+        }
+
+        // テーブルに挿入
+        historyTable.innerHTML = educationHtml + workHtml;
+        certificationTable.innerHTML += certificationHtml;
+
+        // トグル機能の動作
+        document.querySelectorAll('.education-title, .work-title').forEach(function (title) {
+            title.addEventListener('click', function () {
+                var details = this.nextElementSibling;
+                var icon = this.querySelector('.toggle-icon');
+                if (details && details.classList.contains('hidden')) {
+                    details.classList.remove('hidden');
+                    icon.textContent = '▲';
+                } else if (details) {
+                    details.classList.add('hidden');
+                    icon.textContent = '▼';
+                }
+            });
+        });
+    } else {
+        console.error("データの読み込みに失敗しました:", xhr.statusText);
+        //表を非表示
+        document.querySelector('.tables').style.display = 'none';
+    }
+};
+
+                    </script>
+
+
+
+                    <!-- /certification-->
+                    <p class="footnote">※商標・ロゴマーク・商号は、お取り引き先様の登録商標または商標です。</p>
+
+
+                </div>
+            </section>
+            <!-- /about -->
+
 
             <!-- works -->
             <section class="works section" id="works">
@@ -79,87 +272,10 @@
                             <p class="works-name">作品名が入る</p>
                             <p class="works-info">Design / Coding(Responsive)</p>
                         </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-sample-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design / Coding(Responsive)</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-sample-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design / Coding(Responsive)</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-sample-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design / Coding(Responsive)</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-sample-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design / Coding(Responsive)</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-sample-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design / Coding(Responsive)</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-sample-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design / Coding(Responsive)</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-sample-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design / Coding(Responsive)</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-dummy-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design / Coding(Responsive) / WordPress</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-dummy-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Design</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-dummy-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Banner Design</p>
-                        </a>
-                        <a class="works-item" href="works-template.html">
-                            <p class="works-img"><img src="img/works-dummy-thumb.jpg" alt="" /></p>
-                            <p class="works-name">作品名が入る</p>
-                            <p class="works-info">Banner Design</p>
-                        </a>
                     </div>
                 </div>
 
-                <!-- client-->
-                <h1 class="client">取引先一覧</h1>
-                <table class="client-table">
-                    <tr>
-                        <th>主要取引先</th>
-                    <tr>
-                        <td>Google Inc.</td>
-                    </tr>
-                    <tr>
-                        <td>Money Forward, Inc.</td>
-                    </tr>
-                    <tr>
-                        <td>（一部抜粋）</td>
-                    </tr>
-                    <!-- 追加の取引先情報をここに追記する -->
 
-
-                </table>
-                <p class="footnote">※順不同・敬称略</p>
-                <p class="footnote">※商標・ロゴマーク・商号は、お取り引き先様の登録商標または商標です。</p>
-
-
-                <!-- /client-->
 
             </section>
             <!-- /works -->
@@ -222,26 +338,7 @@
             </section>
             <!-- /skill -->
 
-            <!-- about -->
-            <section class="about section" id="about">
-                <div class="inner">
-                    <h2 class="title">ABOUT</h2>
-                    <div class="profile">
-                        <p class="profile-img">
-                            <img src="img/profile.jpg" alt="">
-                        </p>
-                        <div class="profile-body">
-                            <p>
-                                テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。
-                            </p>
-                            <p>
-                                テキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入りますテキストが入ります。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- /about -->
+
 
             <!-- contact -->
             <section class="contact section" id="contact">
@@ -276,14 +373,16 @@
         <footer class="footer">
             <div class="copyright">&copy;NAGITO WORKS</div>
             <ul>
-                <li><a href="https://moenaigomi.com/" target="_blank" rel="noopener" >作品展示（moenaigomi.com）<i class="fa fa-external-link-alt"></i></a></li>
-                <li><a href="https://github.com/nagito-hiroshima/" target="_blank" rel="noopener" >GitHub <i class="fa fa-external-link-alt"></i></a></li>
-                </ul>
+                <li><a href="https://moenaigomi.com/" target="_blank" rel="noopener">作品展示（moenaigomi.com）<i
+                            class="fa fa-external-link-alt"></i></a></li>
+                <li><a href="https://github.com/nagito-hiroshima/" target="_blank" rel="noopener">GitHub <i
+                            class="fa fa-external-link-alt"></i></a></li>
+            </ul>
             <ul class="document">
-                <li><a href="./commerical.html" >お問い合わせ</a></li>
-                <li><a href="./commerical.html" >利用規約</a></li>
-                <li><a href="./commerical.html" >特定商取引に基づく表記</a></li>
-                <li><a href="https://www.instagram.com/" >プライバシーポリシー</a></li>
+                <li><a href="./commerical.html">お問い合わせ</a></li>
+                <li><a href="./commerical.html">利用規約</a></li>
+                <li><a href="./commerical.html">特定商取引に基づく表記</a></li>
+                <li><a href="https://www.instagram.com/">プライバシーポリシー</a></li>
             </ul>
         </footer>
         <!-- /footer -->

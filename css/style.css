@@ -485,30 +485,47 @@ li {
     }
 }
 
-
-.client {
-    font-size: 25px;
-    margin: 30px 0 5px 0;
-    text-align: center;
+.certification,
+.profile-history {
+    margin-top: 10px;
+    display: flex; /* 両要素を横並びにする */
+    align-items: flex-start; /* 左右の高さを揃える */
 }
 
-.client-table {
+.certification-table,
+.profile-history-table {
     font-size: 15px;
     margin: auto;
     border-collapse: collapse;
-    width: 50%;
+    width: 100%;
 }
 
-.client-table th,
-.client-table td {
+.certification-table th,
+.certification-table td,
+.profile-history-table th,
+.profile-history-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-.client-table th {
+.profile-history-table th {
     background-color: #f2f2f2;
+    width: 30%;
 }
+
+.certification-table th{
+    background-color: #f2f2f2;
+    max-width: 1%;
+}
+
+
+.profile-history-table td {
+    display: flex;
+    align-items: center; /* 中央揃え */
+    justify-content: flex-start; /* 左揃え */
+}
+
 
 .footnote {
     text-align: left;
@@ -538,4 +555,30 @@ li {
 .document a{
     font-size: 12px;
     color: #888;
+}
+
+.hidden {
+    display: none;
+}
+
+.work-title {
+    cursor: pointer;
+    display: inline-flex;
+}
+
+.toggle-icon {
+    margin-left: 5px;
+    font-size: 12px;
+    color: #007bff;
+}
+
+.toggle-icon:hover {
+    color: #0056b3;
+}
+
+.responsibilities {
+    margin: 0;
+    padding: 0;
+    list-style-type: disc;
+    padding-left: 20px;
 }

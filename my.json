@@ -1,0 +1,127 @@
+{
+  "personal_information": {
+    "name": "𠮷田 文太",
+    "name_sub": "吉田 文太",
+    "date_of_birth": "2004-11-16",
+    "address": "大阪府",
+    "phone_number": "-",
+    "email": "hello@nagito.work"
+  },
+  "education": [
+    {
+      "institution": "東広島市立向陽中学校",
+      "degree": "中学校卒業",
+      "start_date": "2018-04-01",
+      "end_date": "2020-03-31"
+    },
+    {
+      "institution": "学校法人角川ドワンゴ学園 N高等学校",
+      "degree": "高等学校卒業",
+      "start_date": "2020-04-01",
+      "end_date": "2023-03-31",
+      "activities": [
+        {
+          "title": "プログラミングコンテスト",
+          "description": "校内で開催されたプログラミングコンテストに参加し、3位入賞しました。",
+          "release_link": "https://nnn.ed.jp/contest"
+        }
+      ]
+    },
+    {
+      "institution": "大阪電気通信大学 情報通信工学部 情報工学科",
+      "degree": "在籍中",
+      "start_date": "2023-04-01",
+      "end_date": null,
+      "activities": [
+        {
+          "title": "研究発表",
+          "description": "AIを活用したプロジェクトで研究発表を行いました。",
+          "release_link": "https://osakac.ac.jp/ai_research"
+        }
+      ]
+    }
+  ],
+  "work_experience": [
+    {
+      "company_name": "エネクスフリート株式会社",
+      "position": "アルバイト",
+      "start_date": "2021-02",
+      "end_date": "2023-03",
+      "reason_for_leaving": "一身上の都合により退職"
+    },
+    {
+      "company_name": "株式会社ぺぺカルチャーエンターテイメント",
+      "position": "アルバイト",
+      "start_date": "2022-03",
+      "end_date": "2023-03",
+      "reason_for_leaving": "一身上の都合により退職"
+    },
+    {
+      "company_name": "学校法人角川ドワンゴ学園",
+      "position": "業務委託契約",
+      "start_date": "2023-04",
+      "end_date": "2023-03",
+      "reason_for_leaving": "契約満了",
+      "responsibilities": [
+        "学習管理システム（LMS）の運用とサポート",
+        "生徒からの問い合わせ対応",
+        "システムに関するドキュメント作成"
+      ],
+      "related_links": []
+    },
+    {
+      "company_name": "学校法人角川ドワンゴ学園",
+      "position": "アルバイト",
+      "start_date": "2024-04",
+      "end_date": null,
+      "responsibilities": [
+        "データ入力および資料作成",
+        "学内システムのサポート",
+        "事務業務全般"
+      ],
+      "related_links": [
+        {
+          "title": "プロジェクト紹介",
+          "url": "https://example.com/kadokawa/project"
+        }
+      ]
+    }
+  ],
+  "certifications_and_licenses": [
+    {
+      "name": "普通自動二輪免許",
+      "date_issued": "2020-11"
+    },
+    {
+      "name": "食品衛生責任者",
+      "date_issued": "2021-03"
+    },
+    {
+      "name": "ITパスポート試験",
+      "date_issued": "2023-09"
+    },
+    {
+      "name": "普通自動車免許",
+      "date_issued": "2023-10"
+    },
+    {
+      "name": "情報セキュリティマネジメント試験",
+      "date_issued": "2023-12"
+    }
+  ],
+  "languages": [
+    {
+      "language": "日本語",
+      "level": "ネイティブ"
+    },
+    {
+      "language": "英語",
+      "level": "初学"
+    }
+  ],
+  "hobbies": [
+    "ゲーム",
+    "プログラミング"
+  ],
+  "references": []
+}
